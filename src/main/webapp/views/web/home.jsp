@@ -8,7 +8,8 @@
 <title>Home Site</title>
 </head>
 <body>
-	<h1> Hello World ${model.name}</h1>
+	<h1> Hello World</h1>
+	<a href = "/admin-home/">click me</a>
 	<div class="row">
 
       <!-- Blog Entries Column -->
