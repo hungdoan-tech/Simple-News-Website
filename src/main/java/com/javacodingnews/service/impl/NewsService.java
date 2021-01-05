@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import com.javacodingnews.dao.INewsDAO;
 import com.javacodingnews.model.NewsModel;
+import com.javacodingnews.paging.Pageable;
 import com.javacodingnews.service.INewsService;
 
 @ManagedBean
@@ -66,7 +67,7 @@ public class NewsService implements INewsService{
 	}
 
 	@Override
-	public List<NewsModel> findAll(Integer offset, Integer limit) {
-		return this.newsDAO.findAll(offset, limit);		
+	public List<NewsModel> findAll(Pageable pageable) {
+		return this.newsDAO.findAll(pageable);		
 	}
 }

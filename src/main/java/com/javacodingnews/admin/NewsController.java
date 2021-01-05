@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.javacodingnews.constant.SystemConstant;
 import com.javacodingnews.model.NewsModel;
+import com.javacodingnews.paging.PageRequest;
+import com.javacodingnews.paging.Pageable;
 import com.javacodingnews.service.INewsService;
+import com.javacodingnews.sorting.Sorter;
 import com.javacodingnews.utils.FormUtils;
 
 /**
@@ -41,17 +44,17 @@ public class NewsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NewsModel model = FormUtils.toModel(NewsModel.class, request);		
 		
+		//mapping query param to an object
+		Pageable pageable = new PageRequest(model.getPage(), model.getMaxPageItem(), new Sorter(model.getSortName(), model.getSortBy()));
+		
 		//set total item
 		model.setTotalItem(this.newsService.getTotalItem());
 		
 		//set total page
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 		
-		//get offset
-		Integer offset = (model.getPage() - 1) * model.getMaxPageItem();
-		
 		//set listResult
-		model.setListResult(this.newsService.findAll(offset, model.getMaxPageItem()));
+		model.setListResult(this.newsService.findAll(pageable));
 		
 		//set attribute
 		request.setAttribute(SystemConstant.MODEL, model);

@@ -3,12 +3,13 @@ package com.javacodingnews.dao;
 import java.util.List;
 
 import com.javacodingnews.model.NewsModel;
+import com.javacodingnews.paging.Pageable;
 
 public interface INewsDAO {
 	
 	List<NewsModel> findAll();
 	
-	List<NewsModel> findAll(Integer offset, Integer limit);
+	List<NewsModel> findAll(Pageable pageable);
 	
 	NewsModel findOneById(Long id);
 	

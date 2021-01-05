@@ -7,6 +7,7 @@ import javax.annotation.ManagedBean;
 import com.javacodingnews.dao.INewsDAO;
 import com.javacodingnews.mapper.NewsMapper;
 import com.javacodingnews.model.NewsModel;
+import com.javacodingnews.paging.Pageable;
 
 @ManagedBean
 public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO{
@@ -70,10 +71,18 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO{
 	}
 
 	@Override
-	public List<NewsModel> findAll(Integer offset, Integer limit) {
-		String sql = "Select * from news limit ?, ?;";
+	public List<NewsModel> findAll(Pageable pageable) {
+		StringBuilder sql = new StringBuilder("Select * from news");
+		
+		if(pageable.getSorter().getSortBy() != null || pageable.getSorter().getSortName() != null) {
+			sql.append(" order by " + pageable.getSorter().getSortName() + " "+pageable.getSorter().getSortBy());
+		}
+		if(pageable.getOffset() != null  || pageable.getLimit() != null) {
+			sql.append(" limit " + pageable.getOffset() + ", "+pageable.getLimit());
+		}
+		
 		NewsMapper newsMapper = new NewsMapper();
-		List<NewsModel> listNews = this.query(sql, newsMapper, offset, limit);
+		List<NewsModel> listNews = this.query(sql.toString(), newsMapper);
 		return listNews;
 	}	
 }
