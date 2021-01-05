@@ -188,4 +188,45 @@ public class AbstractDAO<T> implements IGenericDAO<T> {
 		}			
 	}
 
+	@Override
+	public int count(String sql, Object... params) {		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			int count = 0;
+			connection = this.getConnection();
+			statement = connection.prepareStatement(sql);
+			// set params 
+			this.setParams(statement, params);
+			// get result
+			resultSet = statement.executeQuery();
+
+			while(resultSet.next()) {
+				count = resultSet.getInt(1);		
+			}
+			
+			return count;			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			try {
+				if(resultSet != null) {
+					resultSet.close();
+				}
+				
+				if(statement != null) {
+					statement.close();
+				}
+				
+				if(connection != null) {
+					connection.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}				
+		}
+	}
+
 }

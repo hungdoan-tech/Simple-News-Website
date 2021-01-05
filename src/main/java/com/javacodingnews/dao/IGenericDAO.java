@@ -17,4 +17,6 @@ public interface IGenericDAO<T> {
 	void update(String sql, Object... params);
 	
 	Long insert(String sql, Object... params);
+	
+	int count(String sql, Object... params);
 }

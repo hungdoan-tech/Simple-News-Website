@@ -54,4 +54,19 @@ public class NewsService implements INewsService{
 			this.newsDAO.delete(id);
 		}		
 	}
+
+	@Override
+	public List<NewsModel> findAll() {
+		return this.newsDAO.findAll();		
+	}
+
+	@Override
+	public int getTotalItem() {		
+		return this.newsDAO.getTotalItem();
+	}
+
+	@Override
+	public List<NewsModel> findAll(Integer offset, Integer limit) {
+		return this.newsDAO.findAll(offset, limit);		
+	}
 }

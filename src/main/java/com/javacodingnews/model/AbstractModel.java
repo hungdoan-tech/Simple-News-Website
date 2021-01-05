@@ -1,8 +1,10 @@
 package com.javacodingnews.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AbstractModel {
+public class AbstractModel<T> {
 
 	private Long id;
     private Timestamp createDate; 
@@ -10,7 +12,37 @@ public class AbstractModel {
     private String createdBy; 
     private String modifiedBy;
     private Long[] ids; 
+    private List<T> listResult = new ArrayList<T>();
+    private Integer page;
+    private Integer totalPage;
+    private Integer maxPageItem;
+    private Integer totalItem;
 
+	
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
+	public Integer getMaxPageItem() {
+		return maxPageItem;
+	}
+	public void setMaxPageItem(Integer maxPageItem) {
+		this.maxPageItem = maxPageItem;
+	}
+	public Integer getTotalItem() {
+		return totalItem;
+	}
+	public void setTotalItem(Integer totalItem) {
+		this.totalItem = totalItem;
+	}
 	public long getId() {
 		return id;
 	}
@@ -46,5 +78,11 @@ public class AbstractModel {
 	}
 	public void setIds(Long[] ids) {
 		this.ids = ids;
+	}
+	public List<T> getListResult() {
+		return listResult;
+	}
+	public void setListResult(List<T> listResult) {
+		this.listResult = listResult;
 	}
 }

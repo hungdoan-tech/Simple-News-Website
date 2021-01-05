@@ -1,3 +1,4 @@
+<%@ include file="/common/taglib.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,43 +8,56 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="card-body">
+<div class="main-content">
+	<form action="<c:url value='/admin-news'/>" id="formSubmit" method="get">
 		<div class="table-responsive">
-			<table class="table table-bordered" width="100%" cellspacing="0">
-				<thead class="thead-dark">
+			<table class="table table-bordered">
+				<thead>
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">First</th>
-						<th scope="col">Last</th>
-						<th scope="col">Handle</th>
+						<th><input type="checkbox" id="checkAll"></th>
+						<th>Tên bài viết</th>
+						<th>Mô tả ngắn</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
+					<c:forEach var="item" items="${model.listResult}">
+						<tr>
+							<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
+							<td>${item.title}</td>
+							<td>${item.shortDescription}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
+			<ul class="pagination" id="pagination"></ul>
+			<input type="hidden" value="" id="page" name="page"/>
+			<input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
 		</div>
-	</div>
-	<nav aria-label="Page navigation">
-		<ul class="pagination" id="pagination"></ul>
-	</nav>
+	</form>
+</div>
+
+
 	<script type="text/javascript">
-    $(function () {
-        window.pagObj = $('#pagination').twbsPagination({
-            totalPages: 10,
-            visiblePages: 5,
-            onPageClick: function (event, page) {
-                console.info(page + ' (from options)');
-            }
-        }).on('page', function (event, page) {
-            console.info(page + ' (from event listening)');
-        });
-    });
-</script>
+		var currentPage = ${model.page}
+		var totalPage = ${model.totalPage}
+		var limit = 2;
+
+		$(function() {
+			window.pagObj = $('#pagination').twbsPagination({
+				totalPages : totalPage,
+				visiblePages : 10,
+				startPage : currentPage,
+				onPageClick : function(event, page) {
+					if (currentPage != page) {
+						$('#maxPageItem').val(limit);
+						$('#page').val(page);
+						$('#formSubmit').submit();
+					}
+				}
+			}).on('page', function(event, page) {
+				console.info(page + ' (from event listening)');
+			});
+		});
+	</script>
 </body>
 </html>
