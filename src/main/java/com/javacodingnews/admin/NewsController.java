@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.javacodingnews.constant.SystemConstant;
 import com.javacodingnews.model.NewsModel;
-import com.javacodingnews.paging.PageRequest;
 import com.javacodingnews.paging.Pageable;
+import com.javacodingnews.paging.RequestPage;
 import com.javacodingnews.service.INewsService;
 import com.javacodingnews.sorting.Sorter;
 import com.javacodingnews.utils.FormUtils;
@@ -45,7 +45,7 @@ public class NewsController extends HttpServlet {
 		NewsModel model = FormUtils.toModel(NewsModel.class, request);		
 		
 		//mapping query param to an object
-		Pageable pageable = new PageRequest(model.getPage(), model.getMaxPageItem(), new Sorter(model.getSortName(), model.getSortBy()));
+		Pageable pageable = new RequestPage(model.getPage(), model.getMaxPageItem(), new Sorter(model.getSortName(), model.getSortBy()));
 		
 		//set total item
 		model.setTotalItem(this.newsService.getTotalItem());
