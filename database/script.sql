@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS NewsWebsite;
-CREATE DATABASE NewsWebsite;
+DROP DATABASE IF EXISTS newswebsite;
+CREATE DATABASE newswebsite CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE NewsWebsite;
 
 create table role(
@@ -47,7 +47,6 @@ create table category(
     createdate timestamp null,
     modifieddate timestamp null,
     createdby varchar(255) null,
-    modifiedby varchar(255) null
 );
 
 alter table news add constraint fk_news_category foreign key (categoryid) references category(id);
@@ -67,4 +66,12 @@ create table comment(
 alter table comment add constraint fk_comment_user foreign key (userid) references user(id);
 alter table comment add constraint fk_comment_news foreign key (newsid) references news(id);
 
+insert into category(code, name) values ('the-thao', 'Thể thao');
+insert into category(code, name) values ('the-gioi', 'Thế giới');
+insert into category(code, name) values ('chinh-tri', 'Chính trị');
+insert into category(code, name) values ('thoi-su', 'Thời sự');
+insert into category(code, name) values ('goc-nhin', 'Góc nhìn');
 
+insert into news(title, shortdescription, content, categoryid) values ('Bai viet 1', "Day la mot bai viet" ,"Noi dung ne",1);
+insert into news(title, shortdescription, content, categoryid) values ('Bai viet 2', "Day la mot bai viet" ,"Noi dung ne",1);
+insert into news(title, shortdescription, content, categoryid) values ('Bai viet 3', "Day la mot bai viet" ,"Noi dung ne",2);

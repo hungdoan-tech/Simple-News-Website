@@ -19,7 +19,12 @@
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
 		<url-pattern>/HomeController</url-pattern>
+		
 	</servlet-mapping>
+	
+	<session-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 	
 	<filter>
 		<filter-name>sitemesh</filter-name>
@@ -30,4 +35,8 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
 </web-app>

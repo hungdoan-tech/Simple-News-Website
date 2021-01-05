@@ -1,6 +1,6 @@
 package com.javacodingnews.model;
 
-public class News {
+public class NewsModel extends AbstractModel {
 	private String title;
 	private String thumbnail;
 	private String shortDescription;

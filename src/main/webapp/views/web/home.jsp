@@ -8,10 +8,16 @@
 <title>Home Site</title>
 </head>
 <body>
-	<h1> Hello World</h1>
-	<a href = "/admin-home/">click me</a>
+<%-- 	<c:forEach items="${model}" var="news">
+                <tr>
+                    <td>${news.id}</td>
+                    <td>${news.title}</td>
+                    <td>${news.content}</td>
+                </tr>
+    </c:forEach>    --%>
+	<a href="admin-home">GetCities</a>
 	<div class="row">
-
+	
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
