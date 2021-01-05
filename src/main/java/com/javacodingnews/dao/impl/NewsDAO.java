@@ -23,8 +23,9 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO{
 
 	@Override
 	public Long save(NewsModel news) {
-		String sql = "insert into news (title, content, shortdescription, categoryid) values (?,?,?,?)";
-		return this.insert(sql, news.getTitle(), news.getContent(), news.getShortDescription(), news.getCategoryId());
+		String sql = "insert into news (title, thumbnail, content, shortdescription, categoryid, createddate, createdby) values (?,?,?,?,?,?,?)";
+		return this.insert(sql, news.getTitle(), news.getThumbnail(), news.getContent(), news.getShortDescription(),
+				news.getCategoryId(), news.getCreatedDate(), news.getCreatedBy());
 	}
 
 	@Override
@@ -37,7 +38,20 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO{
 
 	@Override
 	public Long edit(NewsModel news) {
-		String sql = "insert into news (title, content, shortdescription, categoryid) values (?,?,?,?)";
-		return this.update(sql, news.getTitle(), news.getContent(), news.getShortDescription(), news.getCategoryId());
+		
+		StringBuilder sql = new StringBuilder("update news set title = ?, thumbnail = ?,");
+		sql.append(" content = ?, shortdescription = ?, categoryid = ?,");
+		sql.append(" createddate = ?, createdby = ? where id = ?");		 
+		
+		this.update(sql.toString(), news.getTitle(), news.getThumbnail(), 
+				news.getContent(), news.getShortDescription(), news.getCategoryId(),
+				news.getCreatedDate(), news.getCreatedBy(), news.getId());
+		return news.getId();
+	}
+
+	@Override
+	public void delete(Long id) {
+		String sql = "DELETE FROM news WHERE id = ?";
+		this.update(sql, id);
 	}
 }

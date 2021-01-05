@@ -5,7 +5,7 @@ public class NewsModel extends AbstractModel {
 	private String thumbnail;
 	private String shortDescription;
 	private String content;
-	private long categoryId;
+	private Long categoryId;
 	
 	public String getTitle() {
 		return title;
@@ -37,5 +37,4 @@ public class NewsModel extends AbstractModel {
 	public void setCategoryId(long categoryId) {
 		this.categoryId = categoryId;
 	}
-
 }

@@ -13,4 +13,6 @@ public interface INewsDAO {
 	Long save(NewsModel news);
 	
 	Long edit(NewsModel news);
+	
+	void delete(Long id);
 }

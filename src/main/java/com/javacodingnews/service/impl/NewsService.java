@@ -1,5 +1,6 @@
 package com.javacodingnews.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.annotation.ManagedBean;
@@ -22,6 +23,8 @@ public class NewsService implements INewsService{
 
 	@Override
 	public NewsModel save(NewsModel news) {
+		news.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+		news.setCreatedBy("");
 		Long newsId = newsDAO.save(news);	
 		NewsModel outputNews = newsDAO.findOneById(newsId);
 		return outputNews;
@@ -31,5 +34,24 @@ public class NewsService implements INewsService{
 	public NewsModel findOneById(Long id) {
 		NewsModel outputNews = newsDAO.findOneById(id);
 		return outputNews;
+	}
+
+	@Override
+	public NewsModel edit(NewsModel news) {
+		
+		NewsModel oldNews = newsDAO.findOneById(news.getId());
+		
+		news.setCreatedDate(oldNews.getCreatedDate());
+		news.setCreatedBy(oldNews.getCreatedBy());
+		Long index = this.newsDAO.edit(news);
+		
+		return this.newsDAO.findOneById(index); 
+	}
+
+	@Override
+	public void delete(Long[] ids) {
+		for(Long id : ids) {
+			this.newsDAO.delete(id);
+		}		
 	}
 }

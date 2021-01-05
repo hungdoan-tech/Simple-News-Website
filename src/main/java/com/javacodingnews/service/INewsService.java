@@ -13,4 +13,6 @@ public interface INewsService {
 	NewsModel save(NewsModel news);
 	
 	NewsModel edit(NewsModel news);
+	
+	void delete(Long[] ids);
 }

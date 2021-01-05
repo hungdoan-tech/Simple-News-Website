@@ -53,25 +53,23 @@ public class NewsAPI extends HttpServlet {
 
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		ObjectMapper objectMapper = new ObjectMapper();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		
 		NewsModel requestNews =  HttpUtils.of(request.getReader()).toModel(NewsModel.class);
-		NewsModel news = this.newsService.save(requestNews);		
+		NewsModel news = this.newsService.edit(requestNews);	
 		objectMapper.writeValue(response.getOutputStream(), news);
-		super.doPut(request, response);
 	}
 
 	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
-	}
-	
-	
-	private void saveOrUpdate() {
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
 		
+		NewsModel news = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
+		this.newsService.delete(news.getIds());
+		objectMapper.writeValue(response.getOutputStream(), "{}");
 	}
 }

@@ -16,6 +16,8 @@ public class NewsMapper implements IRowMapper<NewsModel> {
 			news.setShortDescription(resultSet.getString("shortdescription"));
 			news.setContent(resultSet.getString("content"));
 			news.setCategoryId(resultSet.getLong("categoryid"));
+			news.setCreatedDate(resultSet.getTimestamp("createddate"));
+			news.setCreatedBy(resultSet.getString("createdby"));
 			return news;		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
