@@ -13,7 +13,10 @@
 		<jstl.api.version>1.2</jstl.api.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<mysql-connector.version>5.1.49</mysql-connector.version>
-		<servlet-weld.version>2.4.8.Final</servlet-weld.version>		
+		<servlet-weld.version>2.4.8.Final</servlet-weld.version>
+		<jasterxml-jackson.version>2.6.3</jasterxml-jackson.version>
+		<codehaus-jackson.version>1.9.13</codehaus-jackson.version>
+						
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -53,6 +56,37 @@
 		    <groupId>org.jboss.weld.servlet</groupId>
 		    <artifactId>weld-servlet</artifactId>
 		    <version>${servlet-weld.version}</version>
+		</dependency>
+		
+		<!-- json -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jasterxml-jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jasterxml-jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>${jasterxml-jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>${codehaus-jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-asl</artifactId>
+		    <version>${codehaus-jackson.version}</version>
 		</dependency>
 		
 	</dependencies>
