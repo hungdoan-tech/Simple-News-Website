@@ -76,3 +76,10 @@ insert into category(code, name, createddate, createdby) values ('goc-nhin', "GÃ
 insert into news(title, thumbnail, shortdescription, content, categoryid, createddate, createdby) values ('Bai viet 1', "", "Day la mot bai viet" , "Noi dung ne", 1, curdate(), "");
 insert into news(title, thumbnail, shortdescription, content, categoryid, createddate, createdby) values ('Bai viet 2', "", "Day la mot bai viet" , "Noi dung ne", 2, curdate(), "");
 insert into news(title, thumbnail, shortdescription, content, categoryid, createddate, createdby) values ('Bai viet 3', "", "Day la mot bai viet" , "Noi dung ne", 1, curdate(), "");
+
+insert into role(code, name) values('Admin', "Quan tri he thong");
+insert into role(code, name) values('User', "Nguoi dung");
+
+insert into role(username, password, fullname, status) values('admin', "1234", "admin", 1);
+insert into role(username, password, fullname, status) values('NguyenA', "1234", "Nguyen Van A", 2);
+insert into role(username, password, fullname, status) values('NguyenB', "1234", "Nguyen Van B", 2);
