@@ -9,19 +9,21 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.javacodingnews.dao.IGenericDAO;
 import com.javacodingnews.mapper.IRowMapper;
 
 public class AbstractDAO<T> implements IGenericDAO<T> {
 	
+	private ResourceBundle resource =  ResourceBundle.getBundle("db");
 	@Override
 	public Connection getConnection() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/newswebsite";
-			String user = "root";
-			String password = "Admin123*";
+			Class.forName(resource.getString("driverName"));
+			String url = resource.getString("url");
+			String user = resource.getString("user");
+			String password = resource.getString("password");
 			return DriverManager.getConnection(url, user, password);
 			
 		} catch (ClassNotFoundException | SQLException e) {			
