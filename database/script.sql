@@ -80,6 +80,6 @@ insert into news(title, thumbnail, shortdescription, content, categoryid, create
 insert into role(code, name) values('Admin', "Quan tri he thong");
 insert into role(code, name) values('User', "Nguoi dung");
 
-insert into role(username, password, fullname, status) values('admin', "1234", "admin", 1);
-insert into role(username, password, fullname, status) values('NguyenA', "1234", "Nguyen Van A", 2);
-insert into role(username, password, fullname, status) values('NguyenB', "1234", "Nguyen Van B", 2);
+insert into user(username, password, fullname, status, roleid) values('admin', "1234", "admin", 1,1);
+insert into user(username, password, fullname, status, roleid) values('user1', "1234", "Nguyen Van A", 1,2);
+insert into user(username, password, fullname, status, roleid) values('user2', "1234", "Nguyen Van B", 1,2);

@@ -7,8 +7,15 @@ public class UserModel extends AbstractModel<UserModel> {
     private String fullName;
     private String password; 
     private int status;
-    private long roleid;
+    private int roleId;
+	private RoleModel role;
     
+    public int getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -33,10 +40,10 @@ public class UserModel extends AbstractModel<UserModel> {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public long getRoleid() {
-		return roleid;
+	public RoleModel getRole() {
+		return role;
 	}
-	public void setRoleid(long roleid) {
-		this.roleid = roleid;
+	public void setRole(RoleModel role) {
+		this.role = role;
 	}
 }

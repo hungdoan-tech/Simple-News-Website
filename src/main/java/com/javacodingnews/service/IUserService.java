@@ -1,7 +1,7 @@
-package com.javacodingnews.dao;
+package com.javacodingnews.service;
 
 import com.javacodingnews.model.UserModel;
 
-public interface IUserDAO {
+public interface IUserService {
 	UserModel findByUserNameAndPasswordAndStatus(String userName, String password, Integer status);
 }

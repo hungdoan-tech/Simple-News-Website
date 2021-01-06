@@ -5,7 +5,14 @@ public class RoleModel extends AbstractModel<RoleModel> {
 	 
     private String name;
     private String code;
+    private RoleModel role;
     
+	public RoleModel getRole() {
+		return role;
+	}
+	public void setRole(RoleModel role) {
+		this.role = role;
+	}
 	public String getName() {
 		return name;
 	}
